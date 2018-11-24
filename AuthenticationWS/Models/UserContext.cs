@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using AuthenticationWS.Utilities;
+using MySql.Data.MySqlClient;
 
 namespace AuthenticationWS.Models
 {
@@ -14,6 +15,28 @@ namespace AuthenticationWS.Models
         private MySqlConnection GetConnection()
         {
             return new MySqlConnection(ConnectionString);
+        }
+
+        public int AuthenticateUser(string userName, string password)
+        {
+            int count = 0;
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(Queries.AuthenticateUser, conn);
+                cmd.Parameters.Add("@UserName", MySqlDbType.VarChar).Value = userName;
+                cmd.Parameters.Add("@UserPassword", MySqlDbType.VarChar).Value = password;
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        count = (int)reader[0];
+
+                    }
+                }
+            }
+            return count;
         }
     }
 }
