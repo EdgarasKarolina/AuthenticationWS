@@ -18,7 +18,7 @@ namespace AuthenticationWS.Models
             return new MySqlConnection(ConnectionString);
         }
 
-        public void CreateUser(string userName, string userPassword, string firstName, string lastName, string email, string phoneNumber, string country, int isAdmin)
+        public void CreateUser(User user)
         {
             try
             {
@@ -26,14 +26,14 @@ namespace AuthenticationWS.Models
                 {
                     conn.Open();
                     MySqlCommand cmd = new MySqlCommand(Queries.CreateUser, conn);
-                    cmd.Parameters.Add("@userName", MySqlDbType.VarChar).Value = userName;
-                    cmd.Parameters.Add("@userPassword", MySqlDbType.VarChar).Value = userPassword;
-                    cmd.Parameters.Add("@firstName", MySqlDbType.VarChar).Value = firstName;
-                    cmd.Parameters.Add("@lastName", MySqlDbType.VarChar).Value = lastName;
-                    cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = email;
-                    cmd.Parameters.Add("@phoneNumber", MySqlDbType.VarChar).Value = phoneNumber;
-                    cmd.Parameters.Add("@country", MySqlDbType.VarChar).Value = country;
-                    cmd.Parameters.Add("@lastName", MySqlDbType.Int32).Value = isAdmin;
+                    cmd.Parameters.Add("@userName", MySqlDbType.VarChar).Value = user.UserName;
+                    cmd.Parameters.Add("@userPassword", MySqlDbType.VarChar).Value = user.UserPassword;
+                    cmd.Parameters.Add("@firstName", MySqlDbType.VarChar).Value = user.FirstName;
+                    cmd.Parameters.Add("@lastName", MySqlDbType.VarChar).Value = user.LastName;
+                    cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = user.Email;
+                    cmd.Parameters.Add("@phoneNumber", MySqlDbType.VarChar).Value = user.PhoneNumber;
+                    cmd.Parameters.Add("@country", MySqlDbType.VarChar).Value = user.Country;
+                    cmd.Parameters.Add("@lastName", MySqlDbType.Int32).Value = user.IsAdmin;
 
                     cmd.ExecuteReader();
                 }
