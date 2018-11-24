@@ -33,7 +33,7 @@ namespace AuthenticationWS.Models
                     cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = user.Email;
                     cmd.Parameters.Add("@phoneNumber", MySqlDbType.VarChar).Value = user.PhoneNumber;
                     cmd.Parameters.Add("@country", MySqlDbType.VarChar).Value = user.Country;
-                    cmd.Parameters.Add("@lastName", MySqlDbType.Int32).Value = user.IsAdmin;
+                    cmd.Parameters.Add("@isAdmin", MySqlDbType.Int32).Value = 1;
 
                     cmd.ExecuteReader();
                 }
