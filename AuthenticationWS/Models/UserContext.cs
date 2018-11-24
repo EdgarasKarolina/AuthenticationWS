@@ -1,5 +1,6 @@
 ﻿using AuthenticationWS.Utilities;
 using MySql.Data.MySqlClient;
+using System;
 
 namespace AuthenticationWS.Models
 {
@@ -17,7 +18,6 @@ namespace AuthenticationWS.Models
             return new MySqlConnection(ConnectionString);
         }
 
-        /*
         public void CreateUser(string userName, string userPassword, string firstName, string lastName, string email, string phoneNumber, string country, int isAdmin)
         {
             try
@@ -25,11 +25,15 @@ namespace AuthenticationWS.Models
                 using (MySqlConnection conn = GetConnection())
                 {
                     conn.Open();
-                    MySqlCommand cmd = new MySqlCommand(Queries.CreateReservation, conn);
-                    cmd.Parameters.Add("@berthId", MySqlDbType.Int16).Value = berthId;
-                    cmd.Parameters.Add("@customerId", MySqlDbType.Int16).Value = customerId;
-                    cmd.Parameters.Add("@checkIn", MySqlDbType.DateTime).Value = checkIn;
-                    cmd.Parameters.Add("@checkOut", MySqlDbType.DateTime).Value = checkOut;
+                    MySqlCommand cmd = new MySqlCommand(Queries.CreateUser, conn);
+                    cmd.Parameters.Add("@userName", MySqlDbType.VarChar).Value = userName;
+                    cmd.Parameters.Add("@userPassword", MySqlDbType.VarChar).Value = userPassword;
+                    cmd.Parameters.Add("@firstName", MySqlDbType.VarChar).Value = firstName;
+                    cmd.Parameters.Add("@lastName", MySqlDbType.VarChar).Value = lastName;
+                    cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = email;
+                    cmd.Parameters.Add("@phoneNumber", MySqlDbType.VarChar).Value = phoneNumber;
+                    cmd.Parameters.Add("@country", MySqlDbType.VarChar).Value = country;
+                    cmd.Parameters.Add("@lastName", MySqlDbType.Int32).Value = isAdmin;
 
                     cmd.ExecuteReader();
                 }
@@ -38,7 +42,7 @@ namespace AuthenticationWS.Models
             {
             }
         }
-        */
+        
 
         public int AuthenticateUser(string userName, string password)
         {
