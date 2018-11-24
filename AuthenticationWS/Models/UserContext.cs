@@ -19,7 +19,7 @@ namespace AuthenticationWS.Models
 
         public int AuthenticateUser(string userName, string password)
         {
-            int count = 0;
+            var count = 0;
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
@@ -31,8 +31,7 @@ namespace AuthenticationWS.Models
                 {
                     while (reader.Read())
                     {
-                        count = (int)reader[0];
-
+                        count = reader.GetInt32(0);
                     }
                 }
             }
