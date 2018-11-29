@@ -63,5 +63,26 @@ namespace AuthenticationWS.Models
             }
             return count;
         }
+
+        public int GetUserId(string userName, string password)
+        {
+            var userId = 0;
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(Queries.GetUserIdByUsernameAndUserpassword, conn);
+                cmd.Parameters.Add("@UserName", MySqlDbType.VarChar).Value = userName;
+                cmd.Parameters.Add("@UserPassword", MySqlDbType.VarChar).Value = password;
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        userId = reader.GetInt32(0);
+                    }
+                }
+            }
+            return userId;
+        }
     }
 }

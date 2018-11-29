@@ -16,6 +16,14 @@ namespace AuthenticationWS.Controllers
             return context.AuthenticateUser(username, password);
         }
 
+        // GET api/user/username/password
+        [HttpGet("{username}/{password}")]
+        public int GetUserId(string username, string password)
+        {
+            UserContext context = HttpContext.RequestServices.GetService(typeof(AuthenticationWS.Models.UserContext)) as UserContext;
+            return context.GetUserId(username, password);
+        }
+
         // POST: api/Default
         [HttpPost]
         public void Post([FromBody] User user)
