@@ -43,7 +43,6 @@ namespace AuthenticationWS.Models
             }
         }
         
-
         public int AuthenticateUser(string userName, string password)
         {
             var count = 0;
