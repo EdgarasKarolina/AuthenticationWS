@@ -64,13 +64,14 @@ namespace AuthenticationWS.Models
             return count;
         }
 
-        public int GetUserId(string userName, string password)
+        public Tuple<int, int> GetUserId(string userName, string password)
         {
-            var userId = 0;
+            int userId = 0;
+            int isAdmin = 0;
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand(Queries.GetUserIdByUsernameAndUserpassword, conn);
+                MySqlCommand cmd = new MySqlCommand(Queries.GetUserIdAndIsAdmin, conn);
                 cmd.Parameters.Add("@UserName", MySqlDbType.VarChar).Value = userName;
                 cmd.Parameters.Add("@UserPassword", MySqlDbType.VarChar).Value = password;
 
@@ -79,10 +80,11 @@ namespace AuthenticationWS.Models
                     while (reader.Read())
                     {
                         userId = reader.GetInt32(0);
+                        isAdmin = reader.GetInt32(1);
                     }
                 }
             }
-            return userId;
+            return Tuple.Create(userId, isAdmin);
         }
     }
 }

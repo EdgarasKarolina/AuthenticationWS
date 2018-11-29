@@ -4,7 +4,7 @@
     {
         public const string AuthenticateUser = "SELECT count(*) from user WHERE UserName = @UserName AND UserPassword = @UserPassword;";
 
-        public const string GetUserIdByUsernameAndUserpassword = "SELECT UserId from user WHERE UserName = @UserName AND UserPassword = @UserPassword;";
+        public const string GetUserIdAndIsAdmin = "SELECT UserId, IsAdmin from user WHERE UserName = @UserName AND UserPassword = @UserPassword;";
 
         public const string CreateUser = "INSERT INTO user (UserName, UserPassword, FirstName, LastName, Email, PhoneNumber, Country, IsAdmin)\n" +
                     "VALUES (@userName, @userPassword, @firstName, @lastName, @email, @phoneNumber, @country, @isAdmin);";
