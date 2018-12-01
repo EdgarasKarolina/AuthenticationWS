@@ -1,6 +1,7 @@
 ﻿using AuthenticationWS.Utilities;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 
 namespace AuthenticationWS.Models
 {
@@ -64,14 +65,17 @@ namespace AuthenticationWS.Models
             return count;
         }
 
-        public Tuple<int, int> GetUserId(string userName, string password)
+        public List<object> GetUserIdEmailIsAdmin(string userName, string password)
         {
+            var list = new List<object>();
             int userId = 0;
+            string email = "";
             int isAdmin = 0;
+
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand(Queries.GetUserIdAndIsAdmin, conn);
+                MySqlCommand cmd = new MySqlCommand(Queries.GetUserIdEmailIsAdmin, conn);
                 cmd.Parameters.Add("@UserName", MySqlDbType.VarChar).Value = userName;
                 cmd.Parameters.Add("@UserPassword", MySqlDbType.VarChar).Value = password;
 
@@ -80,11 +84,17 @@ namespace AuthenticationWS.Models
                     while (reader.Read())
                     {
                         userId = reader.GetInt32(0);
-                        isAdmin = reader.GetInt32(1);
+                        email = reader.GetString(1);
+                        isAdmin = reader.GetInt32(2);
                     }
                 }
+                list.Add(userId);
+                list.Add(email);
+                list.Add(isAdmin);
             }
-            return Tuple.Create(userId, isAdmin);
+            return list;
         }
+
+
     }
 }
