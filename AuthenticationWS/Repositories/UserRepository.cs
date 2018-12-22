@@ -1,15 +1,17 @@
-﻿using AuthenticationWS.Utilities;
+﻿using AuthenticationWS.Models;
+using AuthenticationWS.Repositories.Interfaces;
+using AuthenticationWS.Utilities;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 
-namespace AuthenticationWS.Models
+namespace AuthenticationWS.Repositories
 {
-    public class UserContext
+    public class UserRepository : IUserRepository
     {
         public string ConnectionString { get; set; }
 
-        public UserContext(string connectionString)
+        public UserRepository(string connectionString)
         {
             this.ConnectionString = connectionString;
         }
@@ -34,7 +36,7 @@ namespace AuthenticationWS.Models
                     cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = user.Email;
                     cmd.Parameters.Add("@phoneNumber", MySqlDbType.VarChar).Value = user.PhoneNumber;
                     cmd.Parameters.Add("@country", MySqlDbType.VarChar).Value = user.Country;
-                    cmd.Parameters.Add("@isAdmin", MySqlDbType.Int32).Value = 1;
+                    cmd.Parameters.Add("@isAdmin", MySqlDbType.Int32).Value = 0;
 
                     cmd.ExecuteReader();
                 }
@@ -94,7 +96,5 @@ namespace AuthenticationWS.Models
             }
             return list;
         }
-
-
     }
 }

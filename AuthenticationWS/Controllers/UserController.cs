@@ -1,7 +1,8 @@
 ﻿using AuthenticationWS.Models;
+using AuthenticationWS.Repositories;
+using AuthenticationWS.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 
 namespace AuthenticationWS.Controllers
@@ -14,24 +15,24 @@ namespace AuthenticationWS.Controllers
         [HttpGet("{username}/{password}")]
         public int AuthenticateUser(string username, string password)
         {
-            UserContext context = HttpContext.RequestServices.GetService(typeof(AuthenticationWS.Models.UserContext)) as UserContext;
-            return context.AuthenticateUser(username, password);
+            IUserRepository repository = HttpContext.RequestServices.GetService(typeof(UserRepository)) as UserRepository;
+            return repository.AuthenticateUser(username, password);
         }
 
         // GET api/user/username/password
         [HttpGet("userId/{username}/{password}")]
         public List<object> GetUserIdEmailIsAdmin(string username, string password)
         {
-            UserContext context = HttpContext.RequestServices.GetService(typeof(AuthenticationWS.Models.UserContext)) as UserContext;
-            return context.GetUserIdEmailIsAdmin(username, password);
+            IUserRepository repository = HttpContext.RequestServices.GetService(typeof(UserRepository)) as UserRepository;
+            return repository.GetUserIdEmailIsAdmin(username, password);
         }
 
         // POST: api/Default
         [HttpPost]
         public void Post([FromBody] User user)
         {
-            UserContext context = HttpContext.RequestServices.GetService(typeof(AuthenticationWS.Models.UserContext)) as UserContext;
-            context.CreateUser(user);
+            IUserRepository repository = HttpContext.RequestServices.GetService(typeof(UserRepository)) as UserRepository;
+            repository.CreateUser(user);
         }
 
     }
