@@ -96,5 +96,26 @@ namespace AuthenticationWS.Repositories
             }
             return list;
         }
+
+        public string GetUserName(int userId)
+        {
+            string userName = "";
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(Queries.GetUserName, conn);
+                cmd.Parameters.Add("@UserId", MySqlDbType.Int16).Value = userId;
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        userName = reader["UserName"].ToString();
+                    }
+                }
+            }
+            return userName;
+        }
     }
 }

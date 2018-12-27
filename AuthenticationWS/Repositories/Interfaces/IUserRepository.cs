@@ -7,6 +7,7 @@ namespace AuthenticationWS.Repositories.Interfaces
     {
         void CreateUser(User user);
         int AuthenticateUser(string userName, string password);
+        string GetUserName(int userId);
         List<object> GetUserIdEmailIsAdmin(string userName, string password);
     }
 }

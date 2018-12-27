@@ -20,6 +20,14 @@ namespace AuthenticationWS.Controllers
                     return repository.AuthenticateUser(username, password);
         }
 
+        // GET api/users/user1/username/
+        [HttpGet("{userId}/username")]
+        public string GetUserName(int userId)
+        {
+            IUserRepository repository = HttpContext.RequestServices.GetService(typeof(UserRepository)) as UserRepository;
+            return repository.GetUserName(userId);
+        }
+
         // GET api/users/user1/password/password1/email
         [HttpGet("{username}/password/{password}/email")]
         public List<object> GetUserIdEmailIsAdmin(string username, string password)
