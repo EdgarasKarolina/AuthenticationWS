@@ -21,7 +21,7 @@ At the moment, the password string hashing functionality is executed on the data
 
 The API is connected to a database which has one `user` table:
 
-| Column	| Data Type     | Cool  |
+| Column	| Data Type     |       |
 | ------------- |:-------------:| -----:|
 | col 3 is      | right-aligned | $1600 |
 | col 2 is      | centered      |   $12 |
