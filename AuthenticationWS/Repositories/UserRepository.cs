@@ -45,7 +45,7 @@ namespace AuthenticationWS.Repositories
             {
             }
         }
-        
+
         public int AuthenticateUser(string userName, string password)
         {
             var count = 0;

@@ -15,9 +15,9 @@ namespace AuthenticationWS.Controllers
         [HttpGet("{username}/password/{password}")]
         public int AuthenticateUser(string username, string password)
         {
-            IUserRepository repository = 
+            IUserRepository repository =
                     HttpContext.RequestServices.GetService(typeof(UserRepository)) as UserRepository;
-                    return repository.AuthenticateUser(username, password);
+            return repository.AuthenticateUser(username, password);
         }
 
         // GET api/users/user1/username/
@@ -32,19 +32,18 @@ namespace AuthenticationWS.Controllers
         [HttpGet("{username}/password/{password}/email")]
         public List<object> GetUserIdEmailIsAdmin(string username, string password)
         {
-            IUserRepository repository = 
+            IUserRepository repository =
                     HttpContext.RequestServices.GetService(typeof(UserRepository)) as UserRepository;
-                    return repository.GetUserIdEmailIsAdmin(username, password);
+            return repository.GetUserIdEmailIsAdmin(username, password);
         }
 
         // POST: api/Default
         [HttpPost]
         public void Post([FromBody] User user)
         {
-            IUserRepository repository = 
+            IUserRepository repository =
                     HttpContext.RequestServices.GetService(typeof(UserRepository)) as UserRepository;
-                    repository.CreateUser(user);
+            repository.CreateUser(user);
         }
-
     }
 }

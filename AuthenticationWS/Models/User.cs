@@ -2,14 +2,14 @@
 {
     public class User
     {
-        public int UserId { get; set; }
-        public string UserName { get; set; }
-        public string UserPassword { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Country { get; set; }
-        public int IsAdmin { get; set; }
+        internal int UserId { get; set; }
+        internal string UserName { get; set; }
+        internal string UserPassword { get; set; }
+        internal string FirstName { get; set; }
+        internal string LastName { get; set; }
+        internal string Email { get; set; }
+        internal string PhoneNumber { get; set; }
+        internal string Country { get; set; }
+        internal int IsAdmin { get; set; }
     }
 }
