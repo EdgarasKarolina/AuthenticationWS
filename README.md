@@ -23,27 +23,15 @@ The API is connected to a database which has one `user` table:
 
 | Column	| Data Type     |         |
 | ------------- |:-------------:| -------:|
-| UserId       :| int(11) AI PK | NOT NULL|
-| UserName     :| varchar(100)  | NOT NULL|
-| UserPassword :| varchar(100)  | NOT NULL|
-| FirstName    :| varchar(100)  | NOT NULL|
-| LastName     :| varchar(100)  | NOT NULL|
-| Email        :| varchar(100)  | NOT NULL|
-| PhoneNumber  :| varchar(100)  | NOT NULL|
-| Country      :| varchar(100)  | NOT NULL|
-| IsAdmin      :| varchar(100)  | NOT NULL|
-
-|  Column        | Data Type       | 
-| -------------- |:---------------:| --------:|  
-|  UserId       :|  int(11) AI PK  | NOT NULL |  
-|  UserName     :|  varchar(100)   | NOT NULL |  
-|  UserPassword :|  varchar(100)   | NOT NULL | 
-|  FirstName    :|  varchar(100)   | NOT NULL |
-|  LastName     :|  varchar(100)   | NOT NULL |
-|  Email        :|  varchar(100)   | NOT NULL |
-|  PhoneNumber  :|  varchar(100)   | NOT NULL |
-|  Country      :|  varchar(100)   | NOT NULL |
-|  IsAdmin      :|  varchar(100)   | NOT NULL | 
+| UserId        | int(11) AI PK | NOT NULL|
+| UserName      | varchar(100)  | NOT NULL|
+| UserPassword  | varchar(100)  | NOT NULL|
+| FirstName     | varchar(100)  | NOT NULL|
+| LastName      | varchar(100)  | NOT NULL|
+| Email         | varchar(100)  | NOT NULL|
+| PhoneNumber   | varchar(100)  | NOT NULL|
+| Country       | varchar(100)  | NOT NULL|
+| IsAdmin       | varchar(100)  | NOT NULL|
 
 
 ## Technologies used
