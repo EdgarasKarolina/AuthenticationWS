@@ -48,3 +48,9 @@ In order to run the project a small amount of prerequisites and additional steps
 
 + Microsoft Visual Studio IDE
 + Database Management System
+
+### Running
+
++ Clone the project from GitHub repository
++ Open `AuthenticationWS.sln` file using Visual Studio IDE
++ Start application by clicking `Play` button
